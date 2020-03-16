@@ -1,0 +1,17 @@
+html(lang="fr")
+  include ../partials/header.pug
+  body
+    h1 Qui prend quoi
+    h2 Créer un événement
+    form(method="post" action="/party")
+      div
+        label(for="name") Nom de l'événement
+        input(name="name" id="name" required minlenght="3" placeholder="Nouvel an")
+        //-  AUTEUR
+        label(for="author") Auteur
+        input(name="author" id="author" required placeholder="Nicolas")
+        //-  D
+        label(for="date") Date
+        input(name="date" id="date" )
+
+      button(type="submit") Créer
