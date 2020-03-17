@@ -14,16 +14,42 @@ app.get('/', function(req, res) {
 app.post('/party', function(req, res) {
   axios
     .post(`${process.env.API_URL}/party`, req.body)
-    .then(({data}) => console.log(data))
-    .catch((err) => console.error(err));
+    .then(({ data }) => res.redirect(`/party/${data._id}`))
+    .catch((err) => res.send(err));
 });
 
 //Page Evénement
 app.get('/party/:id', function(req, res){
-  res.render('party', {test : 'test'})
+  axios
+  .get(`${process.env.API_URL}/party/${req.params.id}`)
+  .then(({ data }) =>
+    res.render('party', {
+      party: data,
+      title: data.name,
+      url: `${process.env.FRONT_URL}:${process.env.PORT}/party/${data._id}`
+    }),
+  )
+  .catch((err) => console.log(err));
 })
 
+app.post('/party/:id/items', (req, res) => {
+  axios
+    .post(`${process.env.API_URL}/party/${req.params.id}/items`, req.body) 
+    .then((data) => res.redirect(`/party/${req.params.id}`))
+    .catch((err) => console.log(err))
+  ;
+});
 
+app.delete('/party/:id/items/:idItem', (req, res) => {
+  axios
+    .delete(`${process.env.API_URL}/party/${req.params.id}/items/${req.params.idItem}`)
+    .then((data) => res.redirect(`/party/${req.params.id}`))
+    .catch((err) => console.log(err))
+  ;
+});
+
+
+app.use(express.static('public'));
 app.listen(process.env.PORT, () => console.log(`Front app listening on port ${process.env.PORT}!`));
 app.set('view engine', 'pug');
 

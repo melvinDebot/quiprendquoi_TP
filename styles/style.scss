@@ -1,0 +1,24 @@
+@import 'vendors/reset.scss';
+@import 'config/medias.scss';
+@import 'blocs/newParty.scss';
+@import url('https://fonts.googleapis.com/css?family=Baloo+Chettan+2:400,500,600,700,800&display=swap');
+
+body{
+
+
+  font-family: 'Baloo Chettan 2', sans-serif;
+  
+  h1{
+    text-align: center;
+ 
+  }
+  h2 {
+
+    font-weight: 600;
+  }
+  
+  form {
+    
+  }
+}
+

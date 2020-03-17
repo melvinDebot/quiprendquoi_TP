@@ -1,0 +1,23 @@
+.newParty__fields {
+
+  display: flex;
+  flex-direction: column;
+
+
+  @include medium {
+    display: grid;
+    grid-template-columns: 175px 1fr;
+    grid-gap: 5px;
+    max-width: 500px;
+  }
+
+  label {
+    @include medium {
+      place-self: center end;
+    }
+    margin-top: 20px;
+
+    
+  }
+  
+}

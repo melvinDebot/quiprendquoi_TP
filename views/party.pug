@@ -1,5 +1,23 @@
 html(lang="fr")
   include ../partials/header.pug
   body
-    h1= test
-    h2 Page événement
+    h1 Qui prend quoi
+    h2= party.name
+    h3 Crée par #{party.author}
+    h3 le #{party.date}
+    label(for="url") Partagez l'événement
+    input(id="url" value=`${url}` data-clipboard=`${url}` data-share-url=`${url}` data-share-title=`${party.name}` )
+    h3 Items
+form(method="post" action=`/party/${party._id}/items`)
+  div
+    label(for="name") Nom de l'item
+    input(type="text" id="name" name="name" required placeholder="Champomy")
+    label(for="user") Nom de la personne 
+    input(type="text" id="user" name="user" required placeholder="Charles")
+  button(type="submit") Créer
+div
+  each item in party.items
+    div
+      p #{item.user} - #{item.name}
+      form(method="post" action=`/party/${party._id}/items/${item._id}?_method=DELETE`)
+        button(type="submit") Supprimer l'item
