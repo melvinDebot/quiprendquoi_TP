@@ -50,6 +50,7 @@ app.delete('/party/:id/items/:idItem', (req, res) => {
 
 
 app.use(express.static('public'));
+app.use(express.static('pwa'));
 app.listen(process.env.PORT, () => console.log(`Front app listening on port ${process.env.PORT}!`));
 app.set('view engine', 'pug');
 

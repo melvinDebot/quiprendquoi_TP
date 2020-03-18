@@ -1,5 +1,7 @@
 html(lang="fr")
   include ../partials/header.pug
+  script.
+    party = !{JSON.stringify(party)}
   body
     h1 Qui prend quoi
     h2= party.name
@@ -10,10 +12,10 @@ html(lang="fr")
     h3 Items
 form(method="post" action=`/party/${party._id}/items`)
   div
-    label(for="name") Nom de l'item
-    input(type="text" id="name" name="name" required placeholder="Champomy")
+    label(for="name") je prends quoi ?
+    input(type="text" id="name" name="name" required placeholder="Bonbons")
     label(for="user") Nom de la personne 
-    input(type="text" id="user" name="user" required placeholder="Charles")
+    input(type="text" id="user" name="user" required placeholder="Melvin")
   button(type="submit") Créer
 div
   each item in party.items
