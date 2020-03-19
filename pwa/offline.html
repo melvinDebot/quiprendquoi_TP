@@ -9,5 +9,31 @@
   <body>
     <h1>Oops !</h1>
     <h2>Vous êtes hors ligne</h2>
+    <script>
+      caches.open('parties').then((cache) =>
+        cache.keys().then((keys) =>
+          keys.forEach((key) => {
+            const name = localStorage.getItem(key.url);
+
+            if (name) {
+              const $link = document.createElement('a');
+              $link.href = key.url;
+              $link.innerHTML = name;
+              document.body.appendChild($link);
+            }else {
+              event.respondWith(
+                fetch(event.request)
+                  .then((res) => {
+                    const copy = res.clone();
+                    caches.open('static').then((cache) => cache.put(event.request, copy));
+                    return res;
+                  })
+                  .catch(() => caches.match(event.request)),
+              );
+            }
+          }),
+        ),
+      );
+    </script>
   </body>
 </html>

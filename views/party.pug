@@ -11,15 +11,15 @@ html(lang="fr")
     input(id="url" value=`${url}` data-clipboard=`${url}` data-share-url=`${url}` data-share-title=`${party.name}` data-share-text=`${party.author} vous invite a rejoindre l'événement ${party.name}` )
     h3 Items
 form(method="post" action=`/party/${party._id}/items`)
-  div
+  div.party__bloc--one
     label(for="name") je prends quoi ?
     input(type="text" id="name" name="name" required placeholder="Bonbons")
     label(for="user") Nom de la personne 
     input(type="text" id="user" name="user" required placeholder="Melvin")
-  button(type="submit") Créer
+  button.party__bloc--create(type="submit") Créer
 div
   each item in party.items
-    div
-      p #{item.user} - #{item.name}
+    div.items
+      p #{item.user} prends #{item.name}
       form(method="post" action=`/party/${party._id}/items/${item._id}?_method=DELETE`)
         button(type="submit") Supprimer l'item

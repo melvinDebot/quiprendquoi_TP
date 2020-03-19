@@ -1,7 +1,9 @@
 .newParty__fields {
-
+  max-width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
 
 
   @include medium {
@@ -15,9 +17,41 @@
     @include medium {
       place-self: center end;
     }
-    margin-top: 20px;
-
-    
+    margin-top: 30px;
+  }
+  input{
+    border-right: none;
+    border-left: none;
+    border-top: none;
   }
   
+}
+.party__bloc--one{
+  border: 1px solid rebeccapurple;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  label{
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  input{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+  }
+  button{
+    color: red;
+  }
+
+}
+
+.items{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  border: 1px solid;
+  border-radius: 5px;
 }

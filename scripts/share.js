@@ -22,3 +22,4 @@ function shareEvent($shareEl) {
     url: $shareEl.getAttribute('data-share-url'),
   })
 }
+
