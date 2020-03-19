@@ -4,22 +4,23 @@ if (navigator.clipboard) {
     $button.innerHTML = 'Copier';
     $clipboardEl.parentNode.append($button);
 
+    $button.innerHTML = 'Copié !';
+    setTimeout(() => ($button.innerHTML = 'Copier'), 2000);
+
     $button.addEventListener(
       'click',
-      copyToClipboard.bind(this, $clipboardEl, $button),
+      copyToClipboard.bind(this, $clipboardEl, $button)
     );
   });
 } else {
-  console.log('Presse papier non supporté :(');
+  console.warn("Pas de support :(")
 }
 
 function copyToClipboard($clipboardEl, $button) {
   navigator.clipboard
-    .writeText($clipboardEl.getAttribute('data-clipboard'))
-    .then(() => {
-      $button.innerHTML = 'Copié !';
-      setTimeout(() => ($button.innerHTML = 'Copier'), 2000);
-    })
-    .catch((err) => console.warn(err));
+  .writeText($clipboardEl.getAttribute('data-clipboard'))
+  .then(() => {
+    console.log('Copié !');
+  })
+  .catch((err) => console.warn(err));
 }
-

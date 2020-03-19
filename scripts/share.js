@@ -1,16 +1,24 @@
-if (navigator.share) {
-  document.querySelectorAll('[data-share-url]').forEach($shareEl => {
-    const $button = document.createElement('button');
-    $button.innerHTML = "Partager l'événement";
-    $shareEl.parentNode.append($button);
-    $button.addEventListener('click', share.bind(this, $shareEl));    
+if(navigator.share) {
+  document.querySelectorAll('[data-share-url]').forEach(($shareEl) => {
+    const $buttonShare = document.createElement('button');
+    $buttonShare.innerHTML = 'Partager';
+    $shareEl.parentNode.append($buttonShare);
+
+    $buttonShare.addEventListener(
+      'click',
+      shareEvent.bind(this, $shareEl)
+    );
   });
+} else {
+  console.warn("Pas de support de partage :(")
 }
 
-function share($shareEl) {
-  navigator.share({
-      title: $shareEl.getAttribute('data-share-title'),
-      text: $shareEl.getAttribute('data-share-text'),
-      url: $shareEl.getAttribute('data-share-url'),
-    });
+
+function shareEvent($shareEl) {
+  navigator
+  .share({
+    title: $shareEl.getAttribute('data-share-title'),
+    text: $shareEl.getAttribute('data-share-text'),
+    url: $shareEl.getAttribute('data-share-url'),
+  })
 }

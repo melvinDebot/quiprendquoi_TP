@@ -8,7 +8,7 @@ html(lang="fr")
     h3 Crée par #{party.author}
     h3 le #{party.date}
     label(for="url") Partagez l'événement
-    input(id="url" value=`${url}` data-clipboard=`${url}` data-share-url=`${url}` data-share-title=`${party.name}` )
+    input(id="url" value=`${url}` data-clipboard=`${url}` data-share-url=`${url}` data-share-title=`${party.name}` data-share-text=`${party.author} vous invite a rejoindre l'événement ${party.name}` )
     h3 Items
 form(method="post" action=`/party/${party._id}/items`)
   div
